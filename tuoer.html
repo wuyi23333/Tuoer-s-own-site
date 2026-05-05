@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuoer_sama 的二次元小窝</title>
+
+    <style>
+        /* 🎨 颜色配置 */
+        :root {
+            --bocchi-pink: #ffb6c1; 
+            --bocchi-blue: #a2c2e6; 
+            --touhou-red: #e63946;  
+            --glass-bg: rgba(255, 255, 255, 0.65); 
+            --text-dark: #4a4a4a;   
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* 🖼️ 动态流光背景 */
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            color: var(--text-dark);
+            height: 100vh; 
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 📦 毛玻璃主框架 */
+        .main-container {
+            width: 90%;
+            max-width: 1050px; 
+            height: 85vh;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1); 
+            display: flex;
+            overflow: hidden; 
+        }
+
+        /* 👈 左侧导航栏 */
+        .sidebar {
+            width: 25%;
+            background: rgba(255,255,255,0.3);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.4);
+            flex-shrink: 0;
+        }
+
+        /* 🧑 头像样式 */
+        .avatar {
+            width: 100px; height: 100px;
+            border-radius: 50%; 
+            object-fit: cover;
+            border: 4px solid var(--bocchi-pink); 
+            margin-bottom: 15px;
+            transition: transform 0.5s; 
+            background-color: white;
+        }
+        .avatar:hover { transform: rotate(360deg); }
+
+        /* 🔘 按钮样式 */
+        .nav-btn {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 12px 15px;
+            margin: 5px 0;
+            border-radius: 10px;
+            cursor: pointer; 
+            transition: all 0.3s;
+            text-align: left;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(255, 255, 255, 0.9); 
+            color: var(--bocchi-pink);
+            transform: translateX(5px); 
+        }
+
+        /* 👉 右侧内容区 */
+        .content-area {
+            width: 75%;
+            padding: 40px;
+            overflow-y: auto; 
+        }
+        
+        /* 美化滚动条 */
+        .content-area::-webkit-scrollbar { width: 8px; }
+        .content-area::-webkit-scrollbar-thumb { background: rgba(255, 182, 193, 0.8); border-radius: 10px; }
+        .content-area::-webkit-scrollbar-track { background: transparent; }
+
+        .section {
+            display: none; 
+            animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+        }
+        .section.active { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 番剧网格样式 */
+        .grid-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            gap: 20px; 
+            margin-top: 20px;
+        }
+        .item-card {
+            background: rgba(255,255,255,0.6);
+            border-radius: 15px;
+            padding: 12px;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+        }
+        .item-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); background: white; } 
+        
+        /* 图片防拉伸样式 */
+        .item-card img { 
+            width: 100%; 
+            height: 110px; 
+            border-radius: 10px; 
+            object-fit: cover; 
+            margin-bottom: 8px; 
+            display: block;
+        }
+        .item-card img.card-img-contain { 
+            object-fit: contain; 
+            background: #fff; 
+        }
+
+        .item-card h3 { font-size: 0.95rem; margin-bottom: 5px; }
+        .item-card p { font-size: 0.75rem; color: #666; }
+
+        .tag { display: inline-block; padding: 4px 10px; background: var(--bocchi-blue); color: white; border-radius: 15px; font-size: 0.8rem; margin: 3px; }
+        .tag.red { background: var(--touhou-red); }
+        .tag.pink { background: var(--bocchi-pink); }
+
+        /* ================= 🎸 孤独摇滚专区 (PDF还原版) ================= */
+        .bocchi-back-btn {
+            background: rgba(255,255,255,0.8); border: none; padding: 8px 15px; border-radius: 10px;
+            cursor: pointer; font-weight: bold; color: var(--text-dark); transition: 0.3s; margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .bocchi-back-btn:hover { background: white; color: var(--bocchi-pink); }
+
+        /* PDF 标题与寄语 */
+        .pdf-header { text-align: center; margin-bottom: 30px; }
+        .pdf-header h1 { font-size: 3rem; color: #e91e63; margin-bottom: 5px; letter-spacing: 2px; }
+        .pdf-tagline { font-size: 1.2rem; color: #ad1457; font-weight: bold; }
+        
+        .pdf-quote-box { background: rgba(255,255,255,0.7); padding: 25px; border-radius: 15px; border-left: 8px solid #ff80ab; margin: 25px 0; }
+        .pdf-quote-box h2 { color: #e91e63; font-size: 1.4rem; margin-bottom: 10px; }
+
+        /* PDF 角色卡片 */
+        .pdf-char-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+        .pdf-char-card { background: rgba(255,255,255,0.7); border-radius: 20px; padding: 15px; display: flex; gap: 15px; align-items: flex-start; border: 2px solid #fce4ec; transition: 0.3s; }
+        .pdf-char-card:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(233,30,99,0.1); background: white; }
+        
+        .pdf-avatar-frame { width: 110px; height: 110px; background: #fff; border-radius: 12px; flex-shrink: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 1px solid #eee; }
+        .pdf-avatar-frame img { width: 100%; height: 100%; object-fit: contain; } /* 绝对露头 */
+        
+        .pdf-char-info h3 { color: #e91e63; margin-bottom: 5px; border-bottom: 2px solid #fce4ec; display: inline-block; font-size: 1.1rem; }
+        .pdf-char-info p { font-size: 0.8rem; line-height: 1.5; color: #555; }
+
+        /* 数据统计 */
+        .pdf-stats-row { display: flex; justify-content: space-between; margin: 30px 0; gap: 10px; }
+        .pdf-stat-box { flex: 1; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px; text-align: center; border-bottom: 5px solid #f06292; }
+        .pdf-stat-num { display: block; font-size: 1.5rem; font-weight: bold; color: #e91e63; }
+
+        /* 特色列表 */
+        .pdf-feature-box { background: rgba(255,255,255,0.8); padding: 25px; border-radius: 20px; margin-bottom: 30px; }
+        .pdf-feature-box h2 { border-left: 6px solid #e91e63; padding-left: 15px; margin-bottom: 15px; color: #ad1457; font-size: 1.3rem; }
+
+        /* PDF 风格时间轴 */
+        .pdf-timeline-container { position: relative; margin: 40px 0; padding: 0 10px; }
+        .pdf-timeline-line { position: absolute; top: 20px; left: 0; right: 0; height: 5px; background: #f8bbd0; z-index: 1; }
+        .pdf-timeline-points { display: flex; justify-content: space-between; position: relative; z-index: 2; }
+        .pdf-point { text-align: center; width: 20%; }
+        .pdf-dot { width: 20px; height: 20px; background: white; border: 5px solid #f06292; border-radius: 50%; margin: 12px auto; }
+        .pdf-point h4 { color: #e91e63; font-size: 0.9rem; margin-bottom: 5px; }
+        .pdf-point p { font-size: 0.75rem; color: #666; line-height: 1.2; }
+
+        .pdf-footer { text-align: center; background: #e91e63; color: white; padding: 30px; border-radius: 20px; margin-top: 30px; margin-bottom: 30px; }
+        .pdf-footer h2 { font-size: 2rem; margin-bottom: 10px; }
+
+        /* GIF 和 歌单样式 */
+        .gif-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+        .gif-row img { height: 80px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .ill-row { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .ill-row img { width: 45%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 4px solid rgba(255,255,255,0.8); }
+
+        .song-box { background: rgba(44, 62, 80, 0.85); color: #ecf0f1; border-radius: 15px; padding: 25px; margin-top: 40px; }
+        .song-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); align-items: center; }
+        .song-row:last-child { border-bottom: none; }
+        .song-vocal { font-size: 0.85rem; color: #bdc3c7; text-align: right; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="sidebar">
+            <img src="touxiang.jpg" alt="头像" class="avatar">
+            
+            <h2>Tuoer_sama</h2> 
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 10px; text-align: center;">
+                高二生 | 音乐游戏玩家<br>有点小帅了吧
+            </p> 
+
+            <div style="font-size: 0.8rem; color: #888; text-align: center; margin-bottom: 25px; line-height: 1.6;">
+                <p>QQ：3068842935</p>
+                <p>微信：Tuoer_sama</p>
+                <p>邮件：3068842935@qq.com</p>
+            </div>
+            
+            <button class="nav-btn active" onclick="switchTab('home', this)">🏠 个人主页</button>
+            <button class="nav-btn" onclick="switchTab('anime', this)">📺 日常番推荐</button>
+            <button class="nav-btn" onclick="switchTab('touhou', this)">🌸 东方 Project</button>
+            <button class="nav-btn" onclick="switchTab('games', this)">🎮 音游与作品</button>
+        </div>
+
+        <div class="content-area">
+            
+            <div id="home" class="section active">
+                <h1 style="color: #ffb6c1; border-bottom: 2px dashed #ffb6c1; display: inline-block; padding-bottom: 10px; margin-bottom: 20px;">关于我 / About Me</h1>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    你好！这里是 <strong>Tuoer_sama</strong> 的专属空间。<br>
+                    我是一个热衷于折腾各种稀奇古怪东西的高二学生。平时喜欢推图、打打音游、写写 Python 自动化脚本，偶尔也搞搞像素画和拼豆。<br><br>
+                    
+                    <strong>✨ 技能点 & 爱好：</strong><br>
+                    <span class="tag">osu!</span> 
+                    <span class="tag">Muse Dash</span> 
+                    <span class="tag pink">像素艺术</span> 
+                    <span class="tag pink">拼豆图纸制作</span> 
+                    <span class="tag">Python & Batch</span>
+                </p>
+            </div>
+
+            <div id="anime" class="section">
+                <h1 style="color: #ffb6c1; border-bottom: 2px dashed #ffb6c1; display: inline-block; padding-bottom: 10px; margin-bottom: 20px;">我的追番列表</h1>
+                <div class="grid-box">
+                    
+                    <div class="item-card" onclick="openBocchiGallery()" style="cursor: pointer; border: 2px solid #ffb6c1; box-shadow: 0 0 15px rgba(255,182,193,0.5);">
+                        <div style="position: absolute; top: -10px; right: -10px; background: #ffb6c1; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; animation: pulse 1.5s infinite;">Click!</div>
+                        <img src="gun.jpg" class="card-img-contain" alt="孤独摇滚">
+                        <h3 style="color: #e91e63;">🎸 孤独摇滚！</h3>
+                        <p>点击进入 PDF 深度解析！</p>
+                    </div>
+
+                    <div class="item-card"><img src="tuoer1.webp"><h3>小林家的龙女仆 第一季</h3></div>
+                    <div class="item-card"><img src="tuoerS.jpg"><h3>小林家的龙女仆S</h3></div>
+                    <div class="item-card"><img src="naruto.jpg"><h3>火影忍者</h3></div>
+                    <div class="item-card"><img src="demongirl.png"><h3>街角魔族</h3></div>
+                    <div class="item-card"><img src="https://pic3.zhimg.com/v2-b7e5e78964e52f5208b8941783f06927_r.jpg"><h3>猫咪日常</h3></div>
+                    <div class="item-card"><img src="yuzi.jpg"><h3>玉子市场</h3></div>
+                    <div class="item-card"><img src="yuzi LOVE.jpg"><h3>玉子爱情故事</h3></div>
+                    <div class="item-card"><img src="city.webp"><h3>小城日常</h3></div>
+                    <div class="item-card"><img src="ben girl.webp"><h3>笨女孩</h3></div>
+                    <div class="item-card"><img src="K-ON.png"><h3>轻音少女</h3></div>
+                    <div class="item-card"><img src="LUCKY STAR.png"><h3>幸运星</h3></div>
+                    
+                    <div class="item-card">
+                        <img src="https://image.tmdb.org/t/p/original/7tx5GS3nAtOXM577XE9VOe0LUU8.jpg" alt="日常">
+                        <h3>日常 (Nichijou)</h3>
+                    </div>
+                    <div class="item-card">
+                        <img src="rabbit.jpg" alt="点兔">
+                        <h3>来点兔子吗？</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div id="touhou" class="section">
+                <h1 style="color: #e63946; border-bottom: 2px dashed #e63946; display: inline-block; padding-bottom: 10px; margin-bottom: 20px;">幻想乡漫游指南</h1>
+                <div class="grid-box">
+                    <div class="item-card">
+                        <div style="height:110px; background:#ffd1dc; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:3rem; margin-bottom:8px;">🌸</div>
+                        <h3>西行寺幽幽子</h3>
+                        <p>华胥的亡灵。吃货属性拉满。</p>
+                    </div>
+                    <div class="item-card">
+                        <div style="height:110px; background:#ffcccb; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:3rem; margin-bottom:8px;">🔥</div>
+                        <h3>藤原妹红</h3>
+                        <p>不老不死的蓬莱人，傲娇属性。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="games" class="section">
+                <h1 style="color: #a2c2e6; border-bottom: 2px dashed #a2c2e6; display: inline-block; padding-bottom: 10px; margin-bottom: 20px;">指尖跳动与像素魔法</h1>
+                <div style="padding: 20px; background: rgba(255,255,255,0.7); border-radius: 15px;">
+                    <h3>🎵 节奏游戏档案</h3>
+                    <ul style="margin-top: 10px; margin-left: 20px; line-height: 1.8;">
+                        <li><strong>主攻项目：</strong> osu! / Muse Dash</li>
+                        <li><strong>现役外设：</strong> Wacom CTL-472</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.7); border-radius: 15px;">
+                    <h3>🎨 手工与代码产出</h3>
+                    <ul style="margin-top: 10px; margin-left: 20px; line-height: 1.8;">
+                        <li><strong>拼豆艺术：</strong> 常用像素生成器图纸。</li>
+                        <li><strong>实用脚本：</strong> 各种 Python 自动化、M4A转MP3。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="bocchi-gallery" class="section">
+                <button class="bocchi-back-btn" onclick="closeBocchiGallery()">← 返回番剧列表</button>
+                
+                <div class="pdf-header">
+                    <h1>孤独摇滚！</h1>
+                    <p class="pdf-tagline">从壁橱走向世界的“吉他英雄”</p>
+                    <p style="color: #666; margin-top: 5px;">- 2022年度最具共鸣的职场/校园番剧深度解析 -</p>
+                </div>
+
+                <div class="pdf-quote-box">
+                    <h2>纽带乐队：寻找属于自己的光芒</h2>
+                    <p style="color: #444; font-size: 1.05rem;">下北泽 STARRY Live House 里的四个灵魂，如何奏响跨越社交恐惧的乐章？</p>
+                </div>
+
+                <!-- 头像区域 -->
+                <div class="pdf-char-row">
+                    <div class="pdf-char-card">
+                        <div class="pdf-avatar-frame"><img src="boochi.jpeg" alt="后藤一里"></div>
+                        <div class="pdf-char-info">
+                            <h3>后藤一里</h3>
+                            <p>社交恐惧的极致写照。在壁橱苦练三年吉他。<br><strong>名言：</strong>“只要练习吉他,我一定能成为现充……”</p>
+                        </div>
+                    </div>
+                    <div class="pdf-char-card">
+                        <div class="pdf-avatar-frame"><img src="hongxia.jpeg" alt="伊地知虹夏"></div>
+                        <div class="pdf-char-info">
+                            <h3>伊地知虹夏</h3>
+                            <p>乐队的天使与粘合剂。乐观且清醒的领队。<br>如果没有那次强行拉客，波奇也许永远在壁橱里。</p>
+                        </div>
+                    </div>
+                    <div class="pdf-char-card">
+                        <div class="pdf-avatar-frame"><img src="liang.jpeg" alt="山田凉"></div>
+                        <div class="pdf-char-info">
+                            <h3>山田凉</h3>
+                            <p><strong>属性：</strong>怪人、吃草、冷面笑匠。<br>贝斯手。退出前乐队，在虹夏这里找到了“可以做自己”的地方。</p>
+                        </div>
+                    </div>
+                    <div class="pdf-char-card">
+                        <div class="pdf-avatar-frame"><img src="xiduo.jpeg" alt="喜多郁代"></div>
+                        <div class="pdf-char-info">
+                            <h3>喜多郁代</h3>
+                            <p><strong>属性：</strong>现充、主唱、社交恐怖分子。<br>自带滤镜的超级外向者，乐队的光芒来源。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pdf-stats-row">
+                    <div class="pdf-stat-box"><span class="pdf-stat-num">9.1</span><span style="font-size: 0.8rem; color:#888;">豆瓣 (Douban)</span></div>
+                    <div class="pdf-stat-box"><span class="pdf-stat-num">9.9</span><span style="font-size: 0.8rem; color:#888;">Bilibili</span></div>
+                    <div class="pdf-stat-box"><span class="pdf-stat-num">8.8</span><span style="font-size: 0.8rem; color:#888;">MyAnimeList</span></div>
+                    <div class="pdf-stat-box"><span class="pdf-stat-num">No.1</span><span style="font-size: 0.8rem; color:#888;">Oricon 榜单冠军</span></div>
+                </div>
+
+                <div class="pdf-feature-box">
+                    <h2>为什么它是必看的年度神作？</h2>
+                    <ul style="list-style: none; line-height: 2; padding-left: 10px;">
+                        <li>🎨 <strong>脑洞大开的演出：</strong> 不仅仅是2D动画，还融合了粘土、CG甚至实拍。</li>
+                        <li>🎸 <strong>硬核的乐理细节：</strong> 从调音、扫弦到每一个指法的细节都高度还原。</li>
+                        <li>❤️ <strong>真实的共鸣感：</strong> 波奇的成长很慢，但每一步都充满了勇气，让人泪目。</li>
+                    </ul>
+                </div>
+
+                <div class="pdf-timeline-container">
+                    <h3 style="text-align: center; color: #e91e63; margin-bottom: 25px;">波奇的成长历程(第一季)</h3>
+                    <div class="pdf-timeline-line"></div>
+                    <div class="pdf-timeline-points">
+                        <div class="pdf-point"><div class="pdf-dot"></div><h4>第一站</h4><p>加入纽带乐队<br>躲在芒果箱初演</p></div>
+                        <div class="pdf-point"><div class="pdf-dot"></div><h4>第二站</h4><p>STARRY打工<br>克服社恐的开端</p></div>
+                        <div class="pdf-point"><div class="pdf-dot"></div><h4>第三站</h4><p>路演相遇<br>遇到酒精大前辈</p></div>
+                        <div class="pdf-point"><div class="pdf-dot"></div><h4>最终站</h4><p>文化祭演出<br>成为“吉他英雄”</p></div>
+                    </div>
+                </div>
+
+                <div class="pdf-footer">
+                    <h2>Rock On!</h2>
+                    <p style="font-size: 1.1rem;">如果你也曾在阴影中寻找光芒，这部番就是写给你的情书。</p>
+                </div>
+
+                <!-- 动图区域 -->
+                <div class="gif-row">
+                    <img src="eat xiduo.gif" alt="喜多偷看">
+                    <img src="angry xiduo.gif" alt="喜多发火">
+                    <img src="photo xiduo.gif" alt="喜多摄像机">
+                    <img src="die bocchi.gif" alt="波奇崩坏">
+                </div>
+                
+                <!-- 虹夏高质量插图区域 -->
+                <div class="ill-row">
+                    <img src="cute hongxia.png" alt="虹夏敬礼">
+                    <img src="happy hongxia.png" alt="虹夏摸头">
+                </div>
+
+                <div class="song-box">
+                    <h2 style="text-align: center; color: #f1c40f; margin-bottom: 20px;">结束乐队 必听曲目</h2>
+                    <div class="song-row">
+                        <div style="font-weight: bold;">青春情结 (青春コンプレックス)</div>
+                        <div class="song-vocal">OP / Vocal: <span style="color:#e74c3c;">喜多郁代</span></div>
+                    </div>
+                    <div class="song-row">
+                        <div style="font-weight: bold;"> distortion!! </div>
+                        <div class="song-vocal">ED1 / Vocal: <span style="color:#e74c3c;">喜多郁代</span></div>
+                    </div>
+                    <div class="song-row">
+                        <div style="font-weight: bold;">Karokara (カラカラ)</div>
+                        <div class="song-vocal">ED2 / Vocal: <span style="color:#3498db;">山田凉</span></div>
+                    </div>
+                    <div class="song-row">
+                        <div style="font-weight: bold;">Nanimonone (なにが悪い)</div>
+                        <div class="song-vocal">ED3 / Vocal: <span style="color:#f1c40f;">伊地知虹夏</span></div>
+                    </div>
+                    <div class="song-row">
+                        <div style="font-weight: bold;">那个乐队 (あのバンド)</div>
+                        <div class="song-vocal">第8话插曲 / Vocal: <span style="color:#e74c3c;">喜多郁代</span></div>
+                    </div>
+                    <div class="song-row">
+                        <div style="font-weight: bold;">滚动的岩石，凌晨的彗星</div>
+                        <div class="song-vocal">翻唱 / Vocal: <span style="color:#e91e63;">后藤一里</span></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+    <script>
+        // 侧边栏基础切换功能
+        function switchTab(tabId, btnElement) {
+            // 隐藏所有内容区域
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            // 移除所有按钮的高亮状态
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            // 显示目标内容区
+            document.getElementById(tabId).classList.add('active');
+            
+            // 高亮对应的侧边栏按钮
+            if(btnElement) {
+                btnElement.classList.add('active');
+            } else if (tabId === 'bocchi-gallery') {
+                // 如果是跳转到隐藏画廊，保持"番剧推荐"按钮高亮
+                document.querySelectorAll('.nav-btn')[1].classList.add('active');
+            }
+        }
+
+        // 打开孤独摇滚画廊
+        function openBocchiGallery() {
+            switchTab('bocchi-gallery', null);
+            // 滚动到顶部体验更好
+            document.querySelector('.content-area').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 关闭孤独摇滚画廊，回到番剧列表
+        function closeBocchiGallery() {
+            switchTab('anime', document.querySelectorAll('.nav-btn')[1]);
+        }
+    </script>
+</body>
+</html>
