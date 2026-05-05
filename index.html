@@ -133,8 +133,21 @@
             position: relative;
         }
         .item-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); background: white; } 
-        .card-img { width: 100%; height: 110px; border-radius: 10px; object-fit: cover; margin-bottom: 8px; }
-        .card-img-contain { object-fit: contain; background: #fff; }
+        
+        /* 图片防拉伸样式 */
+        .item-card img { 
+            width: 100%; 
+            height: 110px; 
+            border-radius: 10px; 
+            object-fit: cover; 
+            margin-bottom: 8px; 
+            display: block;
+        }
+        .item-card img.card-img-contain { 
+            object-fit: contain; 
+            background: #fff; 
+        }
+
         .item-card h3 { font-size: 0.95rem; margin-bottom: 5px; }
         .item-card p { font-size: 0.75rem; color: #666; }
 
@@ -158,7 +171,7 @@
         .pdf-quote-box { background: rgba(255,255,255,0.7); padding: 25px; border-radius: 15px; border-left: 8px solid #ff80ab; margin: 25px 0; }
         .pdf-quote-box h2 { color: #e91e63; font-size: 1.4rem; margin-bottom: 10px; }
 
-        /* PDF 角色卡片 (露头修复版) */
+        /* PDF 角色卡片 */
         .pdf-char-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
         .pdf-char-card { background: rgba(255,255,255,0.7); border-radius: 20px; padding: 15px; display: flex; gap: 15px; align-items: flex-start; border: 2px solid #fce4ec; transition: 0.3s; }
         .pdf-char-card:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(233,30,99,0.1); background: white; }
@@ -190,7 +203,7 @@
         .pdf-footer { text-align: center; background: #e91e63; color: white; padding: 30px; border-radius: 20px; margin-top: 30px; margin-bottom: 30px; }
         .pdf-footer h2 { font-size: 2rem; margin-bottom: 10px; }
 
-        /* 保留原来的 GIF 和 歌单样式 */
+        /* GIF 和 歌单样式 */
         .gif-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
         .gif-row img { height: 80px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .ill-row { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
@@ -249,29 +262,29 @@
                     
                     <div class="item-card" onclick="openBocchiGallery()" style="cursor: pointer; border: 2px solid #ffb6c1; box-shadow: 0 0 15px rgba(255,182,193,0.5);">
                         <div style="position: absolute; top: -10px; right: -10px; background: #ffb6c1; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; animation: pulse 1.5s infinite;">Click!</div>
-                        <img src="1000013852.jpg" class="card-img card-img-contain" alt="孤独摇滚">
+                        <img src="gun.jpg" class="card-img-contain" alt="孤独摇滚">
                         <h3 style="color: #e91e63;">🎸 孤独摇滚！</h3>
                         <p>点击进入 PDF 深度解析！</p>
                     </div>
 
-                    <div class="item-card"><img src="https://m.media-amazon.com/images/M/MV5BNmU4Y2Q0NTAtNTdjYS00MDI3LThlYTUtN2IxZDI3NjllN2I1XkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg" class="card-img"><h3>小林家的龙女仆 第一季</h3></div>
-                    <div class="item-card"><img src="https://m.media-amazon.com/images/M/MV5BNmU4Y2Q0NTAtNTdjYS00MDI3LThlYTUtN2IxZDI3NjllN2I1XkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg" class="card-img"><h3>小林家的龙女仆S</h3></div>
-                    <div class="item-card"><img src="https://m.media-amazon.com/images/M/MV5BMDI3ZWY4Y2YtZGQxMC00N2U2LWI2OGYtYmI2M2M0N2NlMzE1XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_.jpg" class="card-img"><h3>火影忍者</h3></div>
-                    <div class="item-card"><img src="https://m.media-amazon.com/images/M/MV5BMGU5NmQ3ZGMtZmExMi00OTY3LTg4OTItYmY4N2Y1NGEzYmVhXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg" class="card-img"><h3>街角魔族</h3></div>
-                    <div class="item-card"><img src="https://pic3.zhimg.com/v2-b7e5e78964e52f5208b8941783f06927_r.jpg" class="card-img"><h3>猫咪日常</h3></div>
-                    <div class="item-card"><img src="https://m.media-amazon.com/images/M/MV5BMTgzYjE1YjMtNjY3MC00N2NlLWI1M2MtYmE0NzM0YzcxN2Y5XkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg" class="card-img"><h3>玉子市场</h3></div>
-                    <div class="item-card"><img src="https://m.media-amazon.com/images/M/MV5BZmUwNGUyYmEtNDk3Mi00NjQ4LWExOTMtOTU4YzBiYTBlM2U0XkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg" class="card-img"><h3>玉子爱情故事</h3></div>
-                    <div class="item-card"><img src="https://img1.doubanio.com/view/photo/l/public/p2268153496.jpg" class="card-img"><h3>小城日常</h3></div>
-                    <div class="item-card"><img src="https://m.media-amazon.com/images/M/MV5BMGZmMDA2NmYtNWViNy00NDQ0LTlmYmItMzAwMjhlNGEwMDI3XkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg" class="card-img"><h3>笨女孩</h3></div>
-                    <div class="item-card"><img src="https://m.media-amazon.com/images/M/MV5BMDMzY2U2ZWMtY2VlNi00Y2E3LWEzMTgtYzA1NmY3M2YwZGU1XkEyXkFqcGdeQXVyNjc3OTE4Nzk@._V1_FMjpg_UX1000_.jpg" class="card-img"><h3>轻音少女</h3></div>
-                    <div class="item-card"><img src="https://m.media-amazon.com/images/M/MV5BMTY3NTc3NTU1NF5BMl5BanBnXkFtZTcwOTU1NjQyMQ@@._V1_.jpg" class="card-img"><h3>幸运星</h3></div>
+                    <div class="item-card"><img src="tuoer1.webp"><h3>小林家的龙女仆 第一季</h3></div>
+                    <div class="item-card"><img src="tuoerS.jpg"><h3>小林家的龙女仆S</h3></div>
+                    <div class="item-card"><img src="naruto.jpg"><h3>火影忍者</h3></div>
+                    <div class="item-card"><img src="demongirl.png"><h3>街角魔族</h3></div>
+                    <div class="item-card"><img src="https://pic3.zhimg.com/v2-b7e5e78964e52f5208b8941783f06927_r.jpg"><h3>猫咪日常</h3></div>
+                    <div class="item-card"><img src="yuzi.jpg"><h3>玉子市场</h3></div>
+                    <div class="item-card"><img src="yuzi LOVE.jpg"><h3>玉子爱情故事</h3></div>
+                    <div class="item-card"><img src="city.webp"><h3>小城日常</h3></div>
+                    <div class="item-card"><img src="ben girl.webp"><h3>笨女孩</h3></div>
+                    <div class="item-card"><img src="K-ON.png"><h3>轻音少女</h3></div>
+                    <div class="item-card"><img src="LUCKY STAR.png"><h3>幸运星</h3></div>
                     
                     <div class="item-card">
-                        <img src="https://image.tmdb.org/t/p/original/7tx5GS3nAtOXM577XE9VOe0LUU8.jpg" class="card-img" alt="日常">
+                        <img src="https://image.tmdb.org/t/p/original/7tx5GS3nAtOXM577XE9VOe0LUU8.jpg" alt="日常">
                         <h3>日常 (Nichijou)</h3>
                     </div>
                     <div class="item-card">
-                        <img src="rabbit.jpg" class="card-img" alt="点兔">
+                        <img src="rabbit.jpg" alt="点兔">
                         <h3>来点兔子吗？</h3>
                     </div>
                 </div>
@@ -325,30 +338,31 @@
                     <p style="color: #444; font-size: 1.05rem;">下北泽 STARRY Live House 里的四个灵魂，如何奏响跨越社交恐惧的乐章？</p>
                 </div>
 
+                <!-- 头像区域 -->
                 <div class="pdf-char-row">
                     <div class="pdf-char-card">
-                        <div class="pdf-avatar-frame"><img src="1000013852.jpg" alt="后藤一里"></div>
+                        <div class="pdf-avatar-frame"><img src="boochi.jpeg" alt="后藤一里"></div>
                         <div class="pdf-char-info">
                             <h3>后藤一里</h3>
                             <p>社交恐惧的极致写照。在壁橱苦练三年吉他。<br><strong>名言：</strong>“只要练习吉他,我一定能成为现充……”</p>
                         </div>
                     </div>
                     <div class="pdf-char-card">
-                        <div class="pdf-avatar-frame"><img src="1000013855.jpg" alt="伊地知虹夏"></div>
+                        <div class="pdf-avatar-frame"><img src="hongxia.jpeg" alt="伊地知虹夏"></div>
                         <div class="pdf-char-info">
                             <h3>伊地知虹夏</h3>
                             <p>乐队的天使与粘合剂。乐观且清醒的领队。<br>如果没有那次强行拉客，波奇也许永远在壁橱里。</p>
                         </div>
                     </div>
                     <div class="pdf-char-card">
-                        <div class="pdf-avatar-frame"><img src="1000013854.jpg" alt="山田凉"></div>
+                        <div class="pdf-avatar-frame"><img src="liang.jpeg" alt="山田凉"></div>
                         <div class="pdf-char-info">
                             <h3>山田凉</h3>
                             <p><strong>属性：</strong>怪人、吃草、冷面笑匠。<br>贝斯手。退出前乐队，在虹夏这里找到了“可以做自己”的地方。</p>
                         </div>
                     </div>
                     <div class="pdf-char-card">
-                        <div class="pdf-avatar-frame"><img src="1000013853.jpg" alt="喜多郁代"></div>
+                        <div class="pdf-avatar-frame"><img src="xiduo.jpeg" alt="喜多郁代"></div>
                         <div class="pdf-char-info">
                             <h3>喜多郁代</h3>
                             <p><strong>属性：</strong>现充、主唱、社交恐怖分子。<br>自带滤镜的超级外向者，乐队的光芒来源。</p>
@@ -388,15 +402,18 @@
                     <p style="font-size: 1.1rem;">如果你也曾在阴影中寻找光芒，这部番就是写给你的情书。</p>
                 </div>
 
+                <!-- 动图区域 -->
                 <div class="gif-row">
-                    <img src="1000013857.gif" alt="喜多偷看">
-                    <img src="1000013856.gif" alt="喜多发火">
-                    <img src="1000013858.gif" alt="喜多摄像机">
-                    <img src="1000013859.gif" alt="波奇崩坏">
+                    <img src="eat xiduo.gif" alt="喜多偷看">
+                    <img src="angry xiduo.gif" alt="喜多发火">
+                    <img src="photo xiduo.gif" alt="喜多摄像机">
+                    <img src="die bocchi.gif" alt="波奇崩坏">
                 </div>
+                
+                <!-- 虹夏高质量插图区域 -->
                 <div class="ill-row">
-                    <img src="1000013888.png" alt="虹夏敬礼">
-                    <img src="1000013886.png" alt="虹夏摸头">
+                    <img src="cute hongxia.png" alt="虹夏敬礼">
+                    <img src="happy hongxia.png" alt="虹夏摸头">
                 </div>
 
                 <div class="song-box">
