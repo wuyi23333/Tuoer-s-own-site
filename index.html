@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuoer_sama 的二次元小窝</title>
+    
+    <!-- 🌟 网页标签图标 (Favicon) 🌟 -->
+    <link rel="icon" href="boochi.jpeg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="boochi.jpeg">
 
     <style>
         /* 🎨 颜色配置 */
@@ -155,7 +159,7 @@
         .tag.red { background: var(--touhou-red); }
         .tag.pink { background: var(--bocchi-pink); }
 
-        /* ================= 🎸 孤独摇滚专区 (PDF还原版) ================= */
+        /* ================= 🎸 孤独摇滚专区 ================= */
         .bocchi-back-btn {
             background: rgba(255,255,255,0.8); border: none; padding: 8px 15px; border-radius: 10px;
             cursor: pointer; font-weight: bold; color: var(--text-dark); transition: 0.3s; margin-bottom: 20px;
@@ -163,7 +167,6 @@
         }
         .bocchi-back-btn:hover { background: white; color: var(--bocchi-pink); }
 
-        /* PDF 标题与寄语 */
         .pdf-header { text-align: center; margin-bottom: 30px; }
         .pdf-header h1 { font-size: 3rem; color: #e91e63; margin-bottom: 5px; letter-spacing: 2px; }
         .pdf-tagline { font-size: 1.2rem; color: #ad1457; font-weight: bold; }
@@ -177,21 +180,18 @@
         .pdf-char-card:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(233,30,99,0.1); background: white; }
         
         .pdf-avatar-frame { width: 110px; height: 110px; background: #fff; border-radius: 12px; flex-shrink: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 1px solid #eee; }
-        .pdf-avatar-frame img { width: 100%; height: 100%; object-fit: contain; } /* 绝对露头 */
+        .pdf-avatar-frame img { width: 100%; height: 100%; object-fit: contain; } 
         
         .pdf-char-info h3 { color: #e91e63; margin-bottom: 5px; border-bottom: 2px solid #fce4ec; display: inline-block; font-size: 1.1rem; }
         .pdf-char-info p { font-size: 0.8rem; line-height: 1.5; color: #555; }
 
-        /* 数据统计 */
         .pdf-stats-row { display: flex; justify-content: space-between; margin: 30px 0; gap: 10px; }
         .pdf-stat-box { flex: 1; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px; text-align: center; border-bottom: 5px solid #f06292; }
         .pdf-stat-num { display: block; font-size: 1.5rem; font-weight: bold; color: #e91e63; }
 
-        /* 特色列表 */
         .pdf-feature-box { background: rgba(255,255,255,0.8); padding: 25px; border-radius: 20px; margin-bottom: 30px; }
         .pdf-feature-box h2 { border-left: 6px solid #e91e63; padding-left: 15px; margin-bottom: 15px; color: #ad1457; font-size: 1.3rem; }
 
-        /* PDF 风格时间轴 */
         .pdf-timeline-container { position: relative; margin: 40px 0; padding: 0 10px; }
         .pdf-timeline-line { position: absolute; top: 20px; left: 0; right: 0; height: 5px; background: #f8bbd0; z-index: 1; }
         .pdf-timeline-points { display: flex; justify-content: space-between; position: relative; z-index: 2; }
@@ -203,7 +203,6 @@
         .pdf-footer { text-align: center; background: #e91e63; color: white; padding: 30px; border-radius: 20px; margin-top: 30px; margin-bottom: 30px; }
         .pdf-footer h2 { font-size: 2rem; margin-bottom: 10px; }
 
-        /* GIF 和 歌单样式 */
         .gif-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
         .gif-row img { height: 80px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .ill-row { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
@@ -213,6 +212,58 @@
         .song-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); align-items: center; }
         .song-row:last-child { border-bottom: none; }
         .song-vocal { font-size: 0.85rem; color: #bdc3c7; text-align: right; }
+
+        /* ================= 📱 手机端适配代码 ================= */
+        @media (max-width: 768px) {
+            .main-container {
+                width: 100%;
+                height: auto; 
+                min-height: 100vh;
+                flex-direction: column; 
+                border-radius: 0; 
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+                padding: 20px;
+            }
+            .sidebar .nav-btn {
+                text-align: center;
+                margin: 2px 0;
+            }
+            .content-area {
+                width: 100%;
+                height: auto;
+                padding: 20px;
+                overflow-y: visible; 
+            }
+            .grid-box {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 10px;
+            }
+            .pdf-char-row {
+                grid-template-columns: 1fr; 
+            }
+            .pdf-header h1 {
+                font-size: 2rem; 
+            }
+            .pdf-stats-row {
+                flex-wrap: wrap; 
+            }
+            .pdf-stat-box {
+                flex: 1 1 40%; 
+                margin-bottom: 10px;
+            }
+            .ill-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .ill-row img {
+                width: 100%; 
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -271,7 +322,7 @@
                     <div class="item-card"><img src="tuoerS.jpg"><h3>小林家的龙女仆S</h3></div>
                     <div class="item-card"><img src="naruto.jpg"><h3>火影忍者</h3></div>
                     <div class="item-card"><img src="demongirl.png"><h3>街角魔族</h3></div>
-                    <div class="item-card"><img src="https://pic3.zhimg.com/v2-b7e5e78964e52f5208b8941783f06927_r.jpg"><h3>猫咪日常</h3></div>
+                    <div class="item-card"><img src="cat.png"><h3>猫咪日常</h3></div>
                     <div class="item-card"><img src="yuzi.jpg"><h3>玉子市场</h3></div>
                     <div class="item-card"><img src="yuzi LOVE.jpg"><h3>玉子爱情故事</h3></div>
                     <div class="item-card"><img src="city.webp"><h3>小城日常</h3></div>
@@ -412,8 +463,8 @@
                 
                 <!-- 虹夏高质量插图区域 -->
                 <div class="ill-row">
-                    <img src="cute hongxia.png" alt="虹夏敬礼">
-                    <img src="happy hongxia.png" alt="虹夏摸头">
+                    <img src="happy hongxia.png" alt="虹夏敬礼">
+                    <img src="cute hongxia.png" alt="虹夏摸头">
                 </div>
 
                 <div class="song-box">
